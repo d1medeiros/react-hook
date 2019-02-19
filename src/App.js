@@ -1,5 +1,11 @@
 import React, {Component} from 'react';
-import {MyForm, TesteAPI, TesteAPIList} from "./components/FormItems";
+import {
+    MyForm,
+    TesteAPI,
+    TesteAPIContainer,
+    TesteAPIList,
+    X
+} from "./components/FormItems";
 
 
 class App extends Component {
@@ -12,8 +18,7 @@ class App extends Component {
     return (
       <div className="App">
           {/*<MyForm list={list}/>*/}
-          <TesteAPI/>
-          <TesteAPIList/>
+          <TesteAPIContainer/>
       </div>
     );
   }

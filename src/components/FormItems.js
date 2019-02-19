@@ -159,7 +159,7 @@ export function MyForm(props) {
     )
 }
 
-function X() {
+export function X() {
     let [nome, setNome] = useState("");
     let [list, setList] = useState([]);
     function handleName(e) {
@@ -175,14 +175,15 @@ function X() {
     }
 }
 export function TesteAPI(props) {
-    const x = X();
+    let {x} = props;
+    console.log(x);
+
     function click() {
         console.log("click");
         let val = x.nome.value;
         fetch(`https://swapi.co/api/people/${val}/`, {method: "GET"})
             .then(resp=>resp.json())
             .then(resp => {
-                console.log(x.list.setList(resp));
                 x.list.setList(resp.films);
             }).catch(e=>console.error(e))
     }
@@ -192,7 +193,11 @@ export function TesteAPI(props) {
     </div>)
 }
 export function TesteAPIList(props) {
-    const x = X();
+    let {x} = props;
+    console.log("TesteAPIList",x.list);
+    useEffect(()=>{
+        x.list.setList(x.list.list)
+    });
     return(
         <div>
             <ul>
@@ -202,4 +207,12 @@ export function TesteAPIList(props) {
             </ul>
         </div>
     )
+}
+
+export function TesteAPIContainer(props) {
+    const x = X();
+return(<div>
+    <TesteAPI x={x}/>
+    <TesteAPIList x={x}/>
+</div>)
 }
